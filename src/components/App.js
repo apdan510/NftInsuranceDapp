@@ -41,42 +41,41 @@ class App extends Component {
     //Load accounts
     const accounts = await web3.eth.getAccounts();
     console.log(accounts);
+    //Set first account on state
     this.setState({ account: accounts[0] });
-
-    // Network ID
+    // Network ID to switch networks
     const networkId = await web3.eth.net.getId();
+    //Get network data
     const networkData = NftInsuranceDapp.networks[networkId];
+    //Check if net data exists
     if (networkData) {
+      //Assign contract to a variable
       const nftinsurance = new web3.eth.Contract(
         NftInsuranceDapp.abi,
         NftInsuranceDapp.networks[networkId].address
       );
+      //Add NFTInsurance to the state
       this.setState({ nftinsurance });
       console.log(nftinsurance);
     } else {
       window.alert("Contract not deployed on this network");
     }
 
-    //Get network data
-    //Check if net data exists, then
-    //Assign contract to a variable
-    //Add NFTInsurance to the state
     //Add Counts to the state
     //Iterate nfts and add them to the state (by newest)
     //Set latest NFT to view as default
     //Set loading state to false
     //If network data doesn't exist, log error
   }
-
+  //IPFS STUFF HERE//
   //Get file
   captureFile = (event) => {};
-
   //Upload file
   uploadFile = (title) => {};
-
   //Change file
   changeFile = (hash, title) => {};
 
+  //CONSTRUCTOR//
   constructor(props) {
     super(props);
     this.state = {
@@ -111,3 +110,4 @@ class App extends Component {
 }
 
 export default App;
+;
